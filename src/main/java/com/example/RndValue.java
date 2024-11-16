@@ -28,7 +28,7 @@ public class RndValue {
         MIXED {
             @Override
             Function<Size, String> generator() {
-                return new Function<>() {
+                return new Function<Size, String>() {
                     private int idx = 0;
                     private final Flavor[] nonMixed = Arrays.stream(values()).filter(x -> x != MIXED).toArray(Flavor[]::new);
 
