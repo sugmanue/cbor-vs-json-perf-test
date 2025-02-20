@@ -74,8 +74,9 @@ public class RndValue {
     public enum Size {
         SMALL(7, 13),
         MEDIUM(89, 131),
-        LARGE(193, 231);
-
+        LARGE(193, 231),
+        X_LARGE(8209, 8273),
+        XX_LARGE(16417, 16481);
         private final int min;
         private final int max;
 

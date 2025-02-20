@@ -67,7 +67,7 @@ public class MyBenchmark {
 
     @State(Scope.Thread)
     public static class TestCase {
-        @Param({"SMALL", "MEDIUM", "LARGE"})
+        @Param({"SMALL", "MEDIUM", "LARGE", "X_LARGE", "XX_LARGE"})
         private RndValue.Size size;
         ;
 
@@ -82,10 +82,23 @@ public class MyBenchmark {
             String source = new String(Files.readAllBytes(Paths.get(String.format("%s-%s.json", size, flavor))), StandardCharsets.UTF_8);
             MyValue2 value = jsonMapper.readValue(source, MyValue2.class);
             jsonData = jsonMapper.writeValueAsBytes(value);
-            cborData = cborMapper.writeValueAsBytes(value);
+            byte[] cborDataFromFile = readCborFile(size, flavor);
+            if (cborDataFromFile != null) {
+                cborData = cborDataFromFile;
+            } else {
+                cborData = cborMapper.writeValueAsBytes(value);
+            }
         }
     }
 
+
+    private static byte[] readCborFile(RndValue.Size size, RndValue.Flavor flavor)  {
+        try {
+            return Files.readAllBytes(Paths.get(String.format("%s-%s.cbor", size, flavor)));
+        } catch (IOException e) {
+            return null;
+        }
+    }
 
     public static void main(String... args) throws Exception {
         Options opt = new OptionsBuilder()
