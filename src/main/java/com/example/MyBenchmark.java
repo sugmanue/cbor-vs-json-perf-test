@@ -54,7 +54,7 @@ public class MyBenchmark {
     private static final ObjectMapper jsonMapper = new ObjectMapper(new JsonFactory());
     private static final ObjectMapper cborMapper = new ObjectMapper(new CBORFactory());
 
-    @Benchmark
+    //@Benchmark
     public MyValue2 json(TestCase testCase) throws IOException {
         return jsonMapper.readValue(testCase.jsonData, MyValue2.class);
     }
