@@ -78,7 +78,11 @@ public class RndValue {
         X_LARGE(8209, 8273),
         XX_LARGE(16417, 16481),
         XXX_LARGE(16417, 16481),
-        XXXX_LARGE(16417 * 3, 16481 * 3)
+        XXXX_LARGE(16417 * 3, 16481 * 3),
+        X_LARGE_2(8209, 8273),
+        XX_LARGE_2(16417, 16481),
+        XXX_LARGE_2(16417, 16481),
+        XXXX_LARGE_2(16417 * 3, 16481 * 3)
         ;
 
         private final int min;

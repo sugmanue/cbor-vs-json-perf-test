@@ -39,6 +39,7 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -61,13 +62,13 @@ public class MyBenchmark {
 
     @Benchmark
     public MyValue2 cbor(TestCase testCase) throws IOException {
-        return cborMapper.readValue(testCase.cborData, MyValue2.class);
+        return cborMapper.readValue(new ByteArrayInputStream(testCase.cborData), MyValue2.class);
     }
 
 
     @State(Scope.Thread)
     public static class TestCase {
-        @Param({"SMALL", "MEDIUM", "LARGE", "X_LARGE", "XX_LARGE"})
+        @Param({"SMALL", "MEDIUM", "LARGE", "X_LARGE", "XX_LARGE", "XXX_LARGE"})
         private RndValue.Size size;
         ;
 
